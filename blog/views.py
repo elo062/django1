@@ -25,6 +25,7 @@ def home(request):
               <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>"""
     return HttpResponse(text)
 
+
 # une vue qui renvoie juste la date actuelle à l'utilisateur
 from datetime import datetime
 from django.shortcuts import render

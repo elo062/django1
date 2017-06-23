@@ -4,6 +4,7 @@
 from django.conf.urls import url
 from . import views
 
+# Url qui renvoie la date actuelle à l'utilisateur :
 urlspatterns = [
     url(r'^date$', views.date_actuelle),
     url(r'^addition/(?P<nombre1>\d+)/(?P<nombre2>\d+)/$', views.addition)
