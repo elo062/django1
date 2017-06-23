@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-
+from django.http import HttpResponse
 # Create your views here.
 
 # Ajout de la fonction view_article
@@ -19,8 +19,6 @@ def view_article(request, id_article):
 
 
 
-from django.http import HttpResponse
-from django.shortcuts import render
 def home(request):
     """ Exemple de page HTML, non valide pour que l'exemple soit concis """
     text = """<h1>Bienvenue sur mon blog !</h1>
