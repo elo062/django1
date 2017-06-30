@@ -136,12 +136,18 @@ Afin de faciliter le développement, Django possède un tag{% url %}permettant
 L'ajout de fichiers statiques dans notre template (images, CSS, JavaScript) peut se faire via l'utilisation du tag{% static %}.
 
 
+Les classes des modèles se mettent dans models.py de l'application blog.
 
 
 Pour rajouter votre nouveau modèle, il faut donc lancer dans le bash :
 python manage.py makemigrations 
 python manage.py migrate
 
+
+Administration :
+
+On la créé grâce à la commande bash : python manage.py createsuperuser
+Puis on y accède via http://localhost:8000/admin/
 
 
 Moi utilisateur : elo / moumoune062
