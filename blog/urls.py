@@ -9,5 +9,5 @@ urlpatterns = [
      url(r'^accueil$', views.home), # Accueil du blog
      url(r'^article/(\d+)$', views.view_article),  # Vue d'un article
      url(r'^date$', views.date_actuelle),
-     url(r'^addition/(?P<nombre1>\d+)/(?P<nombre2>\d+)/$', views.addition)
+     url(r'^addition/(?P<nombre1>\d+)/(?P<nombre2>\d+)/$', views.addition),
 ]
