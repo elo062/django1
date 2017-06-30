@@ -1,0 +1,25 @@
+<!-- Nous enregistrerons ce fichier base.html  dans le dossier templates du projet et non dans l'application. Souvenez-vous : tout ce qui est relatif au projet va dans un des dossiers de la liste DIRS de la variable de configuration TEMPLATES, pour ce cours il s'agit du dossier templates à la racine du projet.  -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <link rel="stylesheet" href="/media/css/style.css" />
+   <title>{% block title %}Mon blog sur les crêpes bretonnes{% endblock %}</title>
+</head>
+<body>
+<header>Crêpes bretonnes</header>
+    <nav>
+      <!-- On déclare des blocs, qui seront définis dans un autre template, et réutilisables dans le template actuel. -->
+       {% block nav %}
+       <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contact/">Contact</a></li>
+       </ul>
+       {% endblock %}
+   </nav>
+   <section id="content">
+       {% block content %}{% endblock %}
+   </section>
+<footer>&copy; Crêpes bretonnes</footer>
+</body>
+</html>

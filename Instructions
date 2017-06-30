@@ -69,30 +69,68 @@ urlspatterns = [
 ]
 
 
-Les templates permettent également de faire plusieurs traitements, comme afficher une variable, la transformer, faire des conditions... Attention cependant, ces traitements ont pour unique but d'afficher les données, pas de les modifier.
+
+Les templates 
 
 
-Il est possible de factoriser des blocs HTML (comme le début et la fin d'une page) via l'utilisation des tags{% block %}et{% extends %} :
+Les templates ont pour but d'afficher les données, pas de les modifier. Ça marche un peu comme les includes en php grâce aux tags {% block %} et {% extends %} :
 
 
-Ex de page de blog utilisant un template (équivalent du include en php) grâce au tag {% extends %} = héritage de templates :
+Voici ma page de base (base.html) :
 
-{% extends "base.html" %}
-On déclare des blocs, qui seront définis dans un autre template, et réutilisables :
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <link rel="stylesheet" href="/media/css/style.css" />
+   <title>{% block title %}Mon blog sur les crêpes bretonnes{% endblock %}</title>
+</head>
+<body>
+<header>Crêpes bretonnes</header>
+    <nav>
+      <!-- On déclare des blocs, qui seront définis dans un autre template, et réutilisables dans le template actuel. -->
+       {% block nav %}
+       <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contact/">Contact</a></li>
+       </ul>
+       {% endblock %}
+   </nav>
+   <section id="content">
+       {% block content %}{% endblock %} (on remarque que ce bloc est vide, il se fera donc remplacé par le texte du fichier de destination.)
+   </section>
+<footer>&copy; Crêpes bretonnes</footer>
+</body>
+</html>
+
+
+
+
+
+Et ma page date.html qui hérite de ce template :
+
+
+{% extends "base.html" %} => permet de faire appel au template base (comme les include en php)
 {% block title %}Ma page d'accueil{% endblock %}
 {% block content %}
     <h2>Bienvenue !</h2>
     <p>
-       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus 
-       massa non tortor. Vestibulum diam diam, posuere in viverra in, 
-       ullamcorper et libero. Donec eget libero quis risus congue imperdiet ac 
-       id lectus. Nam euismod cursus arcu, et consequat libero ullamcorper sit 
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus
+       massa non tortor. Vestibulum diam diam, posuere in viverra in,
+       ullamcorper et libero. Donec eget libero quis risus congue imperdiet ac
+       id lectus. Nam euismod cursus arcu, et consequat libero ullamcorper sit
        amet.
     </p>
+    <p>La date actuelle est : {{ date }}</p>
 {% endblock %}
 
- 
-Dans cet exemple, nous avons défini deux blocs,title et content. Le tag extends va aller chercher dans le template donné en argument, ici base.html, et remplacer les blocs vides de ce dernier par les blocs de même nom définis dans le template appelé par la vue. Ainsi,title et content seront repris du template fils, mais nav sera le bloc nav défini dans base.html. 
+
+
+On remarque que {% extends "base.html" %} fait appel tout seul à  {% block nav %}, celui-ci s'affiche donc automatiquement. On a juste défini {% block title %} et {% block content %} qui changent comparé à la version base.html (soit on a remplacé le texte soit on en a ajouté).
+
+
+
+
 
 Afin de faciliter le développement, Django possède un tag{% url %}permettant la construction d'URL en lui fournissant la vue à appeler et ses éventuels paramètres.
 L'ajout de fichiers statiques dans notre template (images, CSS, JavaScript) peut se faire via l'utilisation du tag{% static %}.
@@ -104,3 +142,8 @@ Pour rajouter votre nouveau modèle, il faut donc lancer dans le bash :
 python manage.py makemigrations 
 python manage.py migrate
 
+
+
+Moi utilisateur : elo / moumoune062
+
+Autre utilisateur : Matthieu / jiraia8a8cesoir
