@@ -22,6 +22,7 @@ class Article(models.Model):
         """
         return self.titre
 
+
 from django.contrib import admin
 from blog.models import Categorie, Article
 
@@ -34,6 +35,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 admin.site.register(Categorie)
 admin.site.register(Article, ArticleAdmin)
+
 
 
 class Categorie(models.Model):
