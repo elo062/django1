@@ -4,11 +4,6 @@ from django.contrib import admin
 from .models import Categorie, Article
 
 
-
-
-from django.contrib import admin
-from blog.models import Categorie, Article
-
 class ArticleAdmin(admin.ModelAdmin):
    list_display   = ('titre', 'auteur', 'date')
    list_filter    = ('auteur','categorie',)
